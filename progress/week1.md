@@ -2,8 +2,8 @@
 
 ## DSA
 - [x] Two Sum
-- [ ] Best Time to Buy Stock
+- [x] Best Time to Buy Stock
 
 ## System Design
-- [ ] REST API study
+- [X] REST API study
 - [ ] CRUD flow design

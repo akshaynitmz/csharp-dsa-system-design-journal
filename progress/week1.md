@@ -1,7 +1,7 @@
 # Week 1 Progress
 
 ## DSA
-- [ ] Two Sum
+- [x] Two Sum
 - [ ] Best Time to Buy Stock
 
 ## System Design

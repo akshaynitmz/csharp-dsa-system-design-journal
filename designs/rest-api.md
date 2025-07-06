@@ -189,6 +189,6 @@ Accept: application/json
 
 ```http
 Authorization: Bearer <token>
-
+ 
 * Server verifies token for each request (stateless)
 * Payload can include user ID, role, expiry, etc.

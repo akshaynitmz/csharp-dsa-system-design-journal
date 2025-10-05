@@ -19,15 +19,59 @@ jobs:
           echo "Updating Week1.md..."
           TRACKER_FILE="DSA/Week1.md"
 
-          # Example: mark Two Sum as done if file exists
+          # Ensure Week1.md exists
+          if [ ! -f "$TRACKER_FILE" ]; then
+            mkdir -p DSA
+            echo "# Week 1: DSA Progress" > $TRACKER_FILE
+            echo "- [ ] Problem 1: Two Sum" >> $TRACKER_FILE
+            echo "- [ ] Problem 2: Container With Most Water" >> $TRACKER_FILE
+            echo "- [ ] Problem 3: Best Time to Buy & Sell Stock" >> $TRACKER_FILE
+            echo "- [ ] Problem 4: 3Sum" >> $TRACKER_FILE
+          fi
+
+          # DSA updates
           if [ -f "solutions/TwoSum.cs" ]; then
             sed -i 's/- \[ \] Problem 1: Two Sum/- [x] Problem 1: Two Sum/' $TRACKER_FILE
+          fi
+
+          if [ -f "solutions/ContainerWithMostWater.cs" ]; then
+            sed -i 's/- \[ \] Problem 2: Container With Most Water/- [x] Problem 2: Container With Most Water/' $TRACKER_FILE
+          fi
+
+          if [ -f "solutions/BestTimeToBuySell.cs" ]; then
+            sed -i 's/- \[ \] Problem 3: Best Time to Buy & Sell Stock/- [x] Problem 3: Best Time to Buy & Sell Stock/' $TRACKER_FILE
+          fi
+
+          if [ -f "solutions/ThreeSum.cs" ]; then
+            sed -i 's/- \[ \] Problem 4: 3Sum/- [x] Problem 4: 3Sum/' $TRACKER_FILE
+          fi
+
+          # System Design updates
+          DESIGN_TRACKER="SystemDesign/Week1.md"
+          if [ ! -f "$DESIGN_TRACKER" ]; then
+            mkdir -p SystemDesign
+            echo "# Week 1: System Design Progress" > $DESIGN_TRACKER
+            echo "- [ ] Topic 1: What is System Design" >> $DESIGN_TRACKER
+            echo "- [ ] Topic 2: Scalability, Load Balancer, Caching" >> $DESIGN_TRACKER
+            echo "- [ ] Topic 3: Mini Project: URL Shortener" >> $DESIGN_TRACKER
+          fi
+
+          if [ -f "designs/Topic1.md" ]; then
+            sed -i 's/- \[ \] Topic 1: What is System Design/- [x] Topic 1: What is System Design/' $DESIGN_TRACKER
+          fi
+
+          if [ -f "designs/Topic2.md" ]; then
+            sed -i 's/- \[ \] Topic 2: Scalability, Load Balancer, Caching/- [x] Topic 2: Scalability, Load Balancer, Caching/' $DESIGN_TRACKER
+          fi
+
+          if [ -f "designs/Topic3.md" ]; then
+            sed -i 's/- \[ \] Topic 3: Mini Project: URL Shortener/- [x] Topic 3: Mini Project: URL Shortener/' $DESIGN_TRACKER
           fi
 
       - name: Commit changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add DSA/Week1.md
-          git commit -m "Auto-update Week1 tracker" || echo "No changes to commit"
+          git add DSA/Week1.md SystemDesign/Week1.md
+          git commit -m "Auto-update Week1 DSA & System Design tracker" || echo "No changes to commit"
           git push

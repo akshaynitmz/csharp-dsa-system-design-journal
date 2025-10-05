@@ -1,0 +1,33 @@
+name: Update Week1 Tracker
+
+on:
+  push:
+    paths:
+      - 'solutions/**'
+      - 'designs/**'
+
+jobs:
+  update-tracker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Update Week1 Tracker
+        run: |
+          echo "Updating Week1.md..."
+          TRACKER_FILE="DSA/Week1.md"
+
+          # Example: mark Two Sum as done if file exists
+          if [ -f "solutions/TwoSum.cs" ]; then
+            sed -i 's/- \[ \] Problem 1: Two Sum/- [x] Problem 1: Two Sum/' $TRACKER_FILE
+          fi
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add DSA/Week1.md
+          git commit -m "Auto-update Week1 tracker" || echo "No changes to commit"
+          git push
